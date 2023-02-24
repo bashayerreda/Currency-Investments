@@ -6,15 +6,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import androidx.navigation.Navigation
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.currencyinvestments.presentation.coin_details.DetailsListViewModel
 import com.example.currencyinvestments.presentation.coin_details.components.CoinDetailScreen
 import com.example.currencyinvestments.presentation.coin_list.coin_list_viewmodel.CoinsListViewModel
 import com.example.currencyinvestments.presentation.coin_list.components.MainCoinList
+import com.example.currencyinvestments.utils.Screens
 
 
 @Composable
@@ -29,7 +28,9 @@ fun Navigation(navController: NavHostController){
          MainCoinList(navController = navController, viewModelState = state)
       }
         composable(Screens.DetailsScreen.route+ "/{coinId}"){
-            CoinDetailScreen()
+            val viewModel = hiltViewModel<DetailsListViewModel>()
+            val state by viewModel.state.collectAsState()
+            CoinDetailScreen(viewModelState = state)
         }
 
   }

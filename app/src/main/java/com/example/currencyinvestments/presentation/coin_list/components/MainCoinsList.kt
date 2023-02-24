@@ -1,5 +1,6 @@
 package com.example.currencyinvestments.presentation.coin_list.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -15,7 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.currencyinvestments.Screens
+import com.example.currencyinvestments.utils.Screens
 import com.example.currencyinvestments.presentation.coin_list.coin_list_viewmodel.CoinsListViewModel
 
 @Composable
@@ -23,7 +24,8 @@ fun MainCoinList(
     navController: NavController,
     modifier: Modifier = Modifier,
     viewModelState: CoinsListViewModel.CoinListState) {
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize()
+        .background(MaterialTheme.colors.primary)) {
         LazyColumn(modifier = Modifier.fillMaxSize()){
             items(viewModelState.coins){ coins ->
                 CoinsListElements(  onItemClick = {
@@ -43,7 +45,7 @@ fun MainCoinList(
         }
         if (viewModelState.isLoading){
             CircularProgressIndicator(modifier= Modifier
-                .align(Alignment.Center))
+                .align(Alignment.Center), color = Color.LightGray)
         }
 
     }

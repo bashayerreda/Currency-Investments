@@ -10,9 +10,9 @@ import kotlinx.coroutines.flow.Flow
 interface CoinRepository {
   suspend fun getCoins(): NetworkResults<List<Coin>>
 
-  suspend fun getCoinDetails(coinId: String): NetworkResults<DetailedCoinDto>
+  suspend fun getCoinDetails(coinId: String): NetworkResults<DetailedCoin>
 
   suspend fun getCoinsWithFlow(): Flow<List<Coin>>
 
-  suspend fun getCoinDetailsWithFlow(coinId: String): Flow<DetailedCoinDto>
+  suspend fun getCoinDetailsWithFlow(coinId: String): Flow<DetailedCoin>
 }

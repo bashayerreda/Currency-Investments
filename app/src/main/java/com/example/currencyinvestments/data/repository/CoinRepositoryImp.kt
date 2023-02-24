@@ -9,6 +9,7 @@ import com.example.currencyinvestments.handleApi
 import com.example.currencyinvestments.handleResponse
 import com.example.currencyinvestments.common.NetworkResults
 import com.example.currencyinvestments.data.mappers.toCoin
+import com.example.currencyinvestments.data.mappers.toDetailsCoin
 import com.example.currencyinvestments.domain.models.Coin
 import com.example.currencyinvestments.domain.models.DetailedCoin
 import kotlinx.coroutines.flow.Flow
@@ -25,8 +26,10 @@ class CoinRepositoryImp @Inject constructor(private val api: CoinsApiInterface) 
         }
     }
 
-   override suspend fun getCoinDetails(coinId: String): NetworkResults<DetailedCoinDto> {
-            TODO("Not yet implemented")
+   override suspend fun getCoinDetails(coinId: String): NetworkResults<DetailedCoin> {
+           return handleApi {
+               Response.success(api.getCoinDetails(coinId).body()!!.toDetailsCoin())
+           }
         }
 
 
@@ -44,9 +47,15 @@ class CoinRepositoryImp @Inject constructor(private val api: CoinsApiInterface) 
 
 
 
-    override suspend fun getCoinDetailsWithFlow(coinId: String): Flow<DetailedCoinDto> {
-        TODO("Not yet implemented")
+    override suspend fun getCoinDetailsWithFlow(coinId: String): Flow<DetailedCoin> {
+        return handleResponse(
+            {
+                api.getCoinDetails(coinId)
+            }
+        ) {
+            it.toDetailsCoin()
+        }
+    }
     }
 
 
-}

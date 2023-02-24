@@ -14,6 +14,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.currencyinvestments.domain.models.Coin
+import okhttp3.internal.wait
 
 
 @Composable
@@ -23,11 +24,11 @@ fun CoinsListElements(coin: Coin, modifier: Modifier = Modifier, onItemClick: (c
         .padding(20.dp),
       horizontalArrangement = Arrangement.SpaceBetween)
     {
-        Text(text = "${coin.rank} + ${coin.name} + ${coin.symbol} ",
+        Text(text = "${coin.rank}. ${coin.name}  (${coin.symbol}) ",
             style = MaterialTheme.typography.body1,
             overflow = TextOverflow.Ellipsis)
-        Text(text = if (coin.isActive) "is Active" else "Not Active",
-            color = if (coin.isActive) Color.Green else Color.Red,
+        Text(text = if (coin.isActive) "Is Active" else "Not Active",
+            color = if (coin.isActive) Color.White else Color.Red,
             style = MaterialTheme.typography.body2,
             textAlign = TextAlign.End,
             modifier =  Modifier.align(CenterVertically)

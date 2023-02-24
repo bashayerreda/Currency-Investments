@@ -4,7 +4,7 @@ import com.example.currencyinvestments.common.Constants
 import com.example.currencyinvestments.data.remote.CoinsApiInterface
 import com.example.currencyinvestments.data.repository.CoinRepositoryImp
 import com.example.currencyinvestments.domain.repository.CoinRepository
-import com.example.currencyinvestments.domain.use_cases.get_coins.InvokeSortedCoins
+import com.example.currencyinvestments.domain.use_cases.get_coins.GetSortedCoinsUseCase
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
@@ -41,8 +41,8 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideUseCases(coinsApiInterface: CoinRepository): InvokeSortedCoins {
-        return InvokeSortedCoins(coinsApiInterface)
+    fun provideUseCases(coinsApiInterface: CoinRepository): GetSortedCoinsUseCase {
+        return GetSortedCoinsUseCase(coinsApiInterface)
 
     }
 

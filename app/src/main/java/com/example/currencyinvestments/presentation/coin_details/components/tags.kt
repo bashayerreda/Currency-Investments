@@ -2,7 +2,9 @@ package com.example.currencyinvestments.presentation.coin_details.components
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -23,6 +25,7 @@ import androidx.compose.ui.unit.dp
                 shape = RoundedCornerShape(8.dp)
 
      )){
+
          Text(text = tag, color = MaterialTheme.colors.primary, textAlign =  TextAlign.Center, style = MaterialTheme.typography.body2)
 
      }

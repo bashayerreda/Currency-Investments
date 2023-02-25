@@ -13,16 +13,18 @@ import javax.inject.Inject
 class GetSortedCoinsUseCase @Inject constructor(private val coinRepo : CoinRepository) {
    suspend operator fun invoke(): Flow<List<Coin>> {
         return coinRepo.getCoinsWithFlow().map {
-            it.sortedBy { it.id }
+            it.sortedBy {
+                it.name
+            }
         }
     }
-    //unused method
-   /*  fun getData() : Flow<NetworkResults<List<Coin>>>{
+
+     fun getData() : Flow<NetworkResults<List<Coin>>>{
         return flow {
             emit(coinRepo.getCoins().apply {
             })
         }
-    }*/
+    }
 
 
 }

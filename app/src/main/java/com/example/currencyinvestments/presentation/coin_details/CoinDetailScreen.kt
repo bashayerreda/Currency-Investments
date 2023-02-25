@@ -26,7 +26,7 @@ fun CoinDetailScreen(
     viewModelState: DetailsListViewModel.CoinInDetails) {
     Box(modifier = Modifier.fillMaxSize()) {
         viewModelState.coin?.let { coinDetailed ->
-            LazyColumn(modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(20.dp)) {
+            LazyColumn(modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(6.dp)) {
                 item {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -76,7 +76,10 @@ fun CoinDetailScreen(
 
                 }
                 items(coinDetailed.team) { teamMembers ->
-                    TeamMembers(team = teamMembers)
+                    TeamMembers(team = teamMembers, modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(6.dp)
+                        )
 
                   Divider()
                 }

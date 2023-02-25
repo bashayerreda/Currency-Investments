@@ -2,6 +2,7 @@ package com.example.currencyinvestments.presentation.coin_list.coin_list_viewmod
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.currencyinvestments.common.NetworkResults
 import com.example.currencyinvestments.domain.models.Coin
 import com.example.currencyinvestments.domain.repository.CoinRepository
 import com.example.currencyinvestments.domain.use_cases.get_coins.GetSortedCoinsUseCase
@@ -11,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CoinsListViewModel @Inject constructor(private val repo : CoinRepository, private val useCasesGetCoins : GetSortedCoinsUseCase): ViewModel() {
+class CoinsListViewModel @Inject constructor(private val useCasesGetCoins : GetSortedCoinsUseCase): ViewModel() {
 
     data class CoinListState(
         val isLoading: Boolean = false,
@@ -24,8 +25,8 @@ class CoinsListViewModel @Inject constructor(private val repo : CoinRepository, 
     val state = _state.asStateFlow()
 
     init {
-        getSortedElements()
-
+       // getSortedElements()
+    getDataAfterDealWithUseCaseClass()
     }
 
 
@@ -84,7 +85,7 @@ class CoinsListViewModel @Inject constructor(private val repo : CoinRepository, 
     }*/
 
 
-  /*  fun getDataAfterDealWithUseCaseClass() {
+    fun getDataAfterDealWithUseCaseClass() {
         viewModelScope.launch {
             useCasesGetCoins.getData().collect { it ->
                 when (it) {
@@ -107,7 +108,7 @@ class CoinsListViewModel @Inject constructor(private val repo : CoinRepository, 
             }
         }
 
-    }*/
+    }
 }
 
 
